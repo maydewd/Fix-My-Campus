@@ -1,0 +1,19 @@
+[
+    {
+        name: "Duke University",
+        nickname: "Duke",
+        email_prefix: "duke.edu",
+        admins: [
+            "dmm68@duke.edu",
+            "rcd@cs.duke.edu"
+            ]
+    },
+    {
+        name: "University of North Carolina at Chapel Hill",
+        nickname: "UNC",
+        email_prefix: "unc.edu",
+        admins: [
+            "admin@unc.edu"
+            ]
+    }
+]
