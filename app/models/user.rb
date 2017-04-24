@@ -5,4 +5,5 @@ class User < ApplicationRecord
          :rememberable, :trackable, :validatable
          
   belongs_to :school
+  has_many :posts
 end

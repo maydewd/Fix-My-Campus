@@ -6,6 +6,7 @@ schools = JSON.parse(schools_file)
 schools.each do |school| 
     # Create or update each school
     s = School.find_or_initialize_by(seed_id: school['seed_id'])
+    s.name = school['name']
     s.nickname = school['nickname']
     s.email_prefix = school['email_prefix']
     s.save
