@@ -1,26 +1,15 @@
 <div class="row">
     <div class="col-lg-9">
-      <h1><%= @school.name %></h1>
+        <div class="row">
+            <div class="col-md-9">
+                <h1 id='school-name'><%= @school.name %></h1>
+            </div>
+            <div class="col-md-3">
+                <%= link_to '<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> New Post'.html_safe, '#', class: 'btn btn-success pull-right new-post' %>
+            </div>
+        </div>
         <div id="posts">
-            <% @posts.each do |post| %>
-                <div class="panel panel-info panel-<%= status_to_suffix(post.status) %>">
-                    <div class="panel-body">
-                        <div class="post-header">
-                            <h6 class="text-muted post-user-info"><%= post.legacy? ? post.legacy_user_name : post.user.name %> - <%= post.created_at.in_time_zone("Eastern Time (US & Canada)").strftime('%d %b %Y %l:%M %p') %></h6>
-                            <span class="label label-<%= status_to_suffix(post.status) %> lb-md post-user-info pull-right"><%= post.status.humanize %></span>
-                        </div>
-                        <p class="lead"><%= post.message %></p>
-                    </div>
-                    <div class="panel-footer">
-                        <button type="button" class="btn btn-default">
-                          <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> I Agree! <span class="badge"><%= post.legacy_numlikes %></span>
-                        </button>
-                        <button type="button" class="btn btn-default pull-right">
-                          See Comments <span class="badge">999</span>
-                        </button>
-                    </div>
-                </div>
-            <% end %>
+            <%= render partial: 'posts/post', collection: @posts %>
         </div>
     </div>
     

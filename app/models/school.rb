@@ -5,4 +5,8 @@ class School < ApplicationRecord
     def admins
         users.where(:admin =>  true)
     end
+    
+    def to_param  # overridden
+        nickname
+    end
 end

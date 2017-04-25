@@ -1,0 +1,17 @@
+<div class="panel panel-info panel-<%= status_to_suffix(post.status) %>">
+    <div class="panel-body">
+        <div class="post-header">
+            <h6 class="text-muted post-user-info"><%= post.legacy? ? post.legacy_user_name : post.user.name %> - <%= post.created_at.in_time_zone("Eastern Time (US & Canada)").strftime('%d %b %Y %l:%M %p') %></h6>
+            <span class="label label-<%= status_to_suffix(post.status) %> lb-md post-user-info pull-right"><%= post.status.humanize %></span>
+        </div>
+        <p class="lead"><%= post.message %></p>
+    </div>
+    <div class="panel-footer">
+        <button type="button" class="btn btn-default">
+          <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> I Agree! <span class="badge"><%= post.legacy_numlikes %></span>
+        </button>
+        <%= link_to post_path(post), class: 'btn btn-default pull-right' do %>
+            See Comments <span class="badge">999</span>
+        <% end %>
+    </div>
+</div>
