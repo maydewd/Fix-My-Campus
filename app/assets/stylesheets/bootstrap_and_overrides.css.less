@@ -1,11 +1,11 @@
 @import "twitter/bootstrap/bootstrap";
 
 // Glyphicons are not required by default, uncomment the following lines to enable them.
-@glyphiconsEotPath: font-url("glyphicons-halflings-regular.eot");
-@glyphiconsEotPath_iefix: font-url("glyphicons-halflings-regular.eot?#iefix");
-@glyphiconsWoffPath: font-url("glyphicons-halflings-regular.woff");
-@glyphiconsTtfPath: font-url("glyphicons-halflings-regular.ttf");
-@glyphiconsSvgPath: font-url("glyphicons-halflings-regular.svg#glyphicons_halflingsregular");
+// @glyphiconsEotPath: font-url("glyphicons-halflings-regular.eot");
+// @glyphiconsEotPath_iefix: font-url("glyphicons-halflings-regular.eot?#iefix");
+// @glyphiconsWoffPath: font-url("glyphicons-halflings-regular.woff");
+// @glyphiconsTtfPath: font-url("glyphicons-halflings-regular.ttf");
+// @glyphiconsSvgPath: font-url("glyphicons-halflings-regular.svg#glyphicons_halflingsregular");
 
 @import "twitter/bootstrap/glyphicons.less";
 
@@ -19,6 +19,7 @@
 //
 // Example:
 // @link-color: #ff0000;
+
 
 // Paper 3.3.7
 // Bootswatch
@@ -1537,4 +1538,25 @@ input[type="checkbox"],
 //** Point at which .dl-horizontal becomes horizontal
 @dl-horizontal-breakpoint:    @grid-float-breakpoint;
 //** Horizontal line color.
-@hr-border:                   @gray-lighter;
+@hr-border:                   @gray-light;
+
+
+
+
+
+
+
+
+// MY CUSTOM MIXINS
+.panel-primary {
+  box-shadow: 0 1px 4px fade(@brand-primary, 90%);
+}
+.panel-warning {
+  box-shadow: 0 1px 4px fade(@brand-warning, 90%);
+}
+.panel-success {
+  box-shadow: 0 1px 4px fade(@brand-success, 90%);
+}
+.panel-danger {
+  box-shadow: 0 1px 4px fade(@brand-danger, 90%);
+}

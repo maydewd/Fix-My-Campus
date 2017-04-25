@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'welcome#index'
   
-  resources :schools, param: :nickname, only: :show, :path => '' do
+  resources :schools, param: :nickname, only: [:index, :show] do
     resources :posts, shallow: true, except: :index
   end
 
