@@ -2,16 +2,17 @@
     <div class="panel-body">
         <div class="post-header">
             <h6 class="text-muted post-user-info"><%= post.legacy? ? post.legacy_user_name : post.user.name %> - <%= post.created_at.in_time_zone("Eastern Time (US & Canada)").strftime('%d %b %Y %l:%M %p') %></h6>
-            <span class="label label-<%= status_to_suffix(post.status) %> lb-md post-user-info pull-right"><%= post.status.humanize %></span>
+            <span class="label label-<%= status_to_suffix(post.status) %> lb-md post-user-info pull-right"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span> <%= post.status.humanize %></span>
         </div>
         <p class="lead"><%= post.message %></p>
     </div>
     <div class="panel-footer">
-        <button type="button" class="btn btn-default">
-          <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> I Agree! <span class="badge"><%= post.legacy_numlikes %></span>
+        <% l_class = user_signed_in? ? (current_user.liked_posts.include?(post) ? 'btn-info' : '' ) : 'disabled' %>
+        <button type="button" class="btn btn-default post-like <%= l_class %>" data-post-id="<%= post.id %>">
+          <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> I Agree! <span id="post-<%= post.id %>-likes" class="badge"><%= post.legacy_numlikes + post.likes.count %></span>
         </button>
         <%= link_to post_path(post), class: 'btn btn-default pull-right' do %>
-            See Comments <span class="badge">999</span>
+            Actions & Comments <span class="badge">999</span>
         <% end %>
     </div>
 </div>

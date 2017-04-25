@@ -1,6 +1,7 @@
 class Post < ApplicationRecord
     belongs_to :school
     belongs_to :user
+    has_many :likes
     
     enum status: [:unreviewed, :in_progress, :completed, :declined]
     

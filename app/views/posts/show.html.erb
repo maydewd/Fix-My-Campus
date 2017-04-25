@@ -35,7 +35,8 @@
                 <% end %>
                 <ul class="nav nav-list">
                     <li class="nav-header">Actions</li>
-                    <li><%= link_to '<span class="glyphicon glyphicon-heart" aria-hidden="true"></span> I Agree!'.html_safe, '#', class: 'text-info' %></li>
+                    <% l_class =  current_user.liked_posts.include?(@post) ? 'text-info' : ''  %>
+                    <li><%= link_to '<span class="glyphicon glyphicon-heart" aria-hidden="true"></span> I Agree!'.html_safe, '#', class: "text-default post-like #{l_class}", data: {:post_id => @post.id} %></li>
                     <li><%= link_to '<span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Add a comment'.html_safe, '#', class: 'text-primary' %></li>
                 </ul>
             <% else %>
