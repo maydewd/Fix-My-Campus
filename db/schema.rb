@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170425162043) do
+ActiveRecord::Schema.define(version: 20170426022059) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "message"
@@ -34,14 +34,17 @@ ActiveRecord::Schema.define(version: 20170425162043) do
   create_table "posts", force: :cascade do |t|
     t.text     "message"
     t.integer  "user_id"
-    t.integer  "school_id",                        null: false
-    t.boolean  "legacy",           default: false, null: false
+    t.integer  "school_id",                          null: false
+    t.boolean  "legacy",             default: false, null: false
     t.string   "legacy_user_name"
     t.string   "legacy_fbid"
-    t.integer  "legacy_numlikes",  default: 0,     null: false
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
-    t.integer  "status",           default: 0
+    t.integer  "legacy_numlikes",    default: 0,     null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.integer  "status",             default: 0
+    t.integer  "likes_count",        default: 0,     null: false
+    t.integer  "recent_likes_count", default: 0,     null: false
+    t.integer  "comments_count",     default: 0,     null: false
     t.index ["legacy_fbid"], name: "index_posts_on_legacy_fbid"
     t.index ["school_id"], name: "index_posts_on_school_id"
     t.index ["user_id"], name: "index_posts_on_user_id"

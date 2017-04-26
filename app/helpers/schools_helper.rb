@@ -10,8 +10,9 @@ module SchoolsHelper
             return 'success'
         elsif status == 'declined'
             return 'danger'
-        else    
-            raise "Unexpected status #{status} given."
+        else # Should never be reached by non-malicious user, but I don't want to throw a runtime error so I will just handle gracefully
+            # raise "Unexpected status #{status} given."
+            return 'default' 
         end
     end
     

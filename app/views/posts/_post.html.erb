@@ -9,10 +9,10 @@
     <div class="panel-footer">
         <% l_class = user_signed_in? ? (current_user.liked_posts.include?(post) ? 'btn-info' : '' ) : 'disabled' %>
         <button type="button" class="btn btn-default post-like <%= l_class %>" data-post-id="<%= post.id %>">
-          <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> I Agree! <span id="post-<%= post.id %>-likes" class="badge"><%= post.legacy_numlikes + post.likes.count %></span>
+          <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> I Agree! <span id="post-<%= post.id %>-likes" class="badge"><%= post.legacy_numlikes + post.likes_count %></span>
         </button>
         <%= link_to post_path(post), class: 'btn btn-default pull-right' do %>
-            Actions & Comments <span class="badge"><%= post.comments.count %></span>
+            Actions & Comments <span class="badge"><%= post.comments_count %></span>
         <% end %>
     </div>
 </div>

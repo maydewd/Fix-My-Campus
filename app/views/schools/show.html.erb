@@ -19,9 +19,9 @@
             <hr />
             <h6>Sort Posts</h6>
             <ul class="nav nav-list">
-                <li><%= link_to '<span class="glyphicon glyphicon-flash" aria-hidden="true"></span> Newest'.html_safe, '#' %></li>
-                <li><%= link_to '<span class="glyphicon glyphicon-fire" aria-hidden="true"></span> Trending'.html_safe, '#' %></li>
-                <li><%= link_to '<span class="glyphicon glyphicon-heart" aria-hidden="true"></span> Top'.html_safe, '#' %></li>
+                <li><%= link_to "<span class='glyphicon glyphicon-flash #{'text-info' if params[:sort] == 'newest'}' aria-hidden='true'></span> Newest".html_safe, school_path(@school, sort: 'newest') %></li>
+                <li><%= link_to "<span class='glyphicon glyphicon-fire #{'text-info' if params[:sort] == 'trending'}'' aria-hidden='true'></span> Trending".html_safe, school_path(@school, sort: 'trending') %></li>
+                <li><%= link_to "<span class='glyphicon glyphicon-heart #{'text-info' if params[:sort] == 'top'}' aria-hidden='true'></span> Top".html_safe, school_path(@school, sort: 'top') %></li>
             </ul>
             <hr />
             <h6>Filter Posts</h6>

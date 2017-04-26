@@ -25,15 +25,15 @@ class Post < ApplicationRecord
         end
     end
     
-    def complex_order(sort)
+    def self.complex_order(sort)
         if sort == 'newest'
-            return 'primary'
-        elsif status == 'trending'
-            return 'warning'
-        elsif status == 'top'
-            return 'success'
-        else    
-            raise "Unexpected sort order #{sort} given."
+            order("created_at DESC")
+        elsif sort == 'trending'
+            order("recent_likes_count DESC, created_at DESC")
+        elsif sort == 'top'
+            order("likes_count + legacy_numlikes DESC, created_at DESC")
+        else # Default behavior is sort by created time
+            order("created_at DESC")
         end
     end
     

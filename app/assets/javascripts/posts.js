@@ -2,11 +2,13 @@
 // All this logic will automatically be available in application.js.
 /*global $*/
 
-$(function() {
+var add_comment_scroll = function() {
     $(".js-add-comment-helper").click(function(event) {
         event.preventDefault();
         $('html, body').animate({
             scrollTop: $("#js-add-comment").offset().top
         }, 1200);
     });
-});
+};
+
+$(document).on('turbolinks:load', add_comment_scroll);

@@ -13,7 +13,7 @@ class SchoolsController < ApplicationController
         @posts = @school.posts
                         .filter_status(params[:statuses])
                         .search(params[:query])
+                        .complex_order(params[:sort])
                         .paginate(:page => params[:page], :per_page => 20)
-                        .complex_order("created_at DESC")
     end
 end

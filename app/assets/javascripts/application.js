@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.turbolinks
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require turbolinks
@@ -18,7 +19,8 @@
 
 /*global $*/
 
-$(function() {
+// Adds click events to all buttons associated with liking a post. Defined here since it affects multiple pages.
+var like_posts = function() {
     // Adds AJAX request for liking a post
     $('.post-like').click(function(event) {
         event.preventDefault();
@@ -45,5 +47,7 @@ $(function() {
             num_el.text(parseInt(num_el.text()) + 1);
         }
     });
-});
+};
 
+
+$(document).on('turbolinks:load', like_posts);
