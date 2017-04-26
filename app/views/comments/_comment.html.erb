@@ -1,0 +1,14 @@
+<div class="panel panel-info">
+    <div class="panel-body">
+        <div class="post-header">
+            <h6 class="text-muted post-user-info"><%= link_to comment.user.name, '#' %> - <%= comment.created_at.in_time_zone("Eastern Time (US & Canada)").strftime('%d %b %Y %l:%M %p') %></h6>
+            <% if user_signed_in? && comment.user == current_user %>
+            <%= link_to '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Delete'.html_safe, comment_path(comment),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-sm btn-danger pull-right' %>
+            <% end %>
+        </div>
+        <p class="lead lead-mb"><%= comment.message %></p>
+    </div>
+</div>

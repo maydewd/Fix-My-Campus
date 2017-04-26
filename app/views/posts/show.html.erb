@@ -1,7 +1,18 @@
 <div class="row">
     <div class="col-lg-9">
-        <%= link_to '<span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span> Back'.html_safe, school_path(@post.school), class: 'btn btn-primary' %>
+        <%= link_to '<span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span> Back'.html_safe, school_path(@post.school), class: 'btn btn-primary back-btn' %>
         <%= render @post %>
+        <hr />
+        <h4>Comments</h4>
+        <% can_add = user_signed_in? && @post.school = current_user.school %>
+        <% if @post.comments.empty? %>
+            <p>
+                No comments yet. <%= 'Add one below!' if can_add %>
+            </p>
+        <% else %>
+            <%= render partial: 'comments/comment', collection: @post.comments %>
+        <% end %>
+        <%= render 'comments/form', post: @post if can_add %>
     </div>
     
     <div class="col-lg-3">
@@ -28,7 +39,7 @@
                 <% if current_user == @post.user %>
                     <ul class="nav nav-list">
                         <li class="nav-header">Author Actions</li>
-                        <li><%= link_to '<span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit this post'.html_safe, '#', class: 'text-warning' %></li>
+                        <li><%= link_to '<span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit this post'.html_safe, edit_post_path(@post), class: 'text-warning' %></li>
                         <li><%= link_to '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Delete this post'.html_safe, post_path(@post), method: 'delete', data: { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, class: 'text-danger' %></li>
                     </ul>
                     <hr />
@@ -37,7 +48,7 @@
                     <li class="nav-header">Actions</li>
                     <% l_class =  current_user.liked_posts.include?(@post) ? 'text-info' : ''  %>
                     <li><%= link_to '<span class="glyphicon glyphicon-heart" aria-hidden="true"></span> I Agree!'.html_safe, '#', class: "text-default post-like #{l_class}", data: {:post_id => @post.id} %></li>
-                    <li><%= link_to '<span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Add a comment'.html_safe, '#', class: 'text-primary' %></li>
+                    <li><%= link_to '<span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Add a comment'.html_safe, '#', class: 'text-primary js-add-comment-helper' %></li>
                 </ul>
             <% else %>
              <p>Sign in to Like, Add a Comment, Edit, or Delete this post.</p>
@@ -46,4 +57,4 @@
     </div><!--/.col-->
 </div><!--/row-->
               
-<%= link_to '<span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Add a comment'.html_safe, '#', class: 'btn btn-primary' %>
+

@@ -1,0 +1,36 @@
+<% comment = Comment.new %>
+<div class="panel panel-info" id="js-add-comment">
+    <div class="panel-body">
+        <div class="post-header">
+            <h5>New Comment</h5>
+            <span class="label lb-md post-user-info pull-right"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span></span>
+        </div>
+        <%= form_for comment, :url => post_comments_path(post), :html => { :class => "form-horizontal comment" } do |f| %>
+          <% if comment.errors.any? %>
+            <div id="error_expl" class="panel panel-danger">
+              <div class="panel-heading">
+                <h3 class="panel-title"><%= pluralize(comment.errors.count, "error") %> prohibited this comment from being saved:</h3>
+              </div>
+              <div class="panel-body">
+                <ul>
+                <% comment.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+                <% end %>
+                </ul>
+              </div>
+            </div>
+          <% end %>
+        
+          <div class="form-group">
+            <div class="col-lg-12">
+              <%= f.text_field :message, :class => 'form-control', placeholder: "Message" %>
+            </div>
+            <%=f.error_span(:message) %>
+          </div>
+        
+          <div class="panel-footer of-auto">
+              <%= f.submit 'Add Comment', :class => 'btn btn-success pull-right' %>
+          </div>
+        <% end %>
+    </div>
+</div>

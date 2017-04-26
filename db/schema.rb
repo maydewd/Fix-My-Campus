@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170425135916) do
+ActiveRecord::Schema.define(version: 20170425162043) do
+
+  create_table "comments", force: :cascade do |t|
+    t.text     "message"
+    t.integer  "user_id"
+    t.integer  "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_comments_on_post_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
 
   create_table "likes", force: :cascade do |t|
     t.integer  "post_id"
@@ -28,7 +38,7 @@ ActiveRecord::Schema.define(version: 20170425135916) do
     t.boolean  "legacy",           default: false, null: false
     t.string   "legacy_user_name"
     t.string   "legacy_fbid"
-    t.integer  "legacy_numlikes"
+    t.integer  "legacy_numlikes",  default: 0,     null: false
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
     t.integer  "status",           default: 0

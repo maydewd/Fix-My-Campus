@@ -10,6 +10,7 @@ class PostsController < ApplicationController
     # GET /posts/new
     def new
         @post = Post.new
+        @post.school = current_user.school
     end
     
     # GET /posts/1/edit
@@ -54,7 +55,7 @@ class PostsController < ApplicationController
             end
         else
             respond_to do |format|
-                format.html { redirect_to @post, notice: 'Post was not updated. You can only update your own posts' }
+                format.html { redirect_to @post, notice: 'Post was not updated. You can only update your own posts.' }
                 # format.json { head :no_content }
             end
         end
@@ -67,16 +68,15 @@ class PostsController < ApplicationController
         if current_user == @post.user
             @post.destroy
             respond_to do |format|
-                format.html { redirect_to @post, notice: 'Post was successfully destroyed.' }
+                format.html { redirect_to current_user.school, notice: 'Post was successfully destroyed.' }
                 # format.json { head :no_content }
             end
         else
             respond_to do |format|
-                format.html { redirect_to @post, notice: 'Post was not destroyed. You can only delete your own posts' }
+                format.html { redirect_to @post, notice: 'Post was not destroyed. You can only delete your own posts.' }
                 # format.json { head :no_content }
             end
         end
-        
     end
     
     # POST /posts/1/like

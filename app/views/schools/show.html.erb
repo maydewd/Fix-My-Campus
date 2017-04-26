@@ -5,7 +5,7 @@
                 <h1 id='school-name'><%= @school.name %></h1>
             </div>
             <div class="col-md-3">
-                <%= link_to '<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> New Post'.html_safe, '#', class: 'btn btn-success pull-right new-post' %>
+                <%= link_to '<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> New Post'.html_safe, new_post_path, class: "btn btn-success pull-right new-post #{user_signed_in? && current_user.school == @school ? '' : 'disabled'}" %>
             </div>
         </div>
         <div id="posts">

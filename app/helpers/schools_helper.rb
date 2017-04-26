@@ -11,7 +11,7 @@ module SchoolsHelper
         elsif status == 'declined'
             return 'danger'
         else    
-            raise "Unexpected status #{status} given"
+            raise "Unexpected status #{status} given."
         end
     end
     

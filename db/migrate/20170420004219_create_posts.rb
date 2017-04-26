@@ -9,7 +9,7 @@ class CreatePosts < ActiveRecord::Migration[5.0]
       t.boolean :legacy, null: false, default: false
       t.string :legacy_user_name
       t.string :legacy_fbid, index: true
-      t.integer :legacy_numlikes
+      t.integer :legacy_numlikes, null: false, default: 0
 
       t.timestamps
     end
