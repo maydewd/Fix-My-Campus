@@ -54,9 +54,11 @@ ActiveRecord::Schema.define(version: 20170426022059) do
     t.string   "name"
     t.string   "nickname"
     t.string   "email_suffix"
+    t.string   "background_color"
+    t.string   "text_color"
     t.integer  "seed_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
     t.index ["email_suffix"], name: "index_schools_on_email_suffix", unique: true
     t.index ["name"], name: "index_schools_on_name", unique: true
     t.index ["nickname"], name: "index_schools_on_nickname", unique: true

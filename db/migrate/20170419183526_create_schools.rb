@@ -4,6 +4,8 @@ class CreateSchools < ActiveRecord::Migration[5.0]
       t.string :name
       t.string :nickname
       t.string :email_suffix
+      t.string :background_color
+      t.string :text_color
       t.integer :seed_id
 
       t.timestamps

@@ -4,6 +4,8 @@
         "name": "Duke University",
         "nickname": "Duke",
         "email_suffix": "duke.edu",
+        "background_color": "001A57",
+        "text_color": "FFFFFF",
         "admins": [
             "dmm68@duke.edu",
             "rcd@cs.duke.edu"
@@ -14,8 +16,32 @@
         "name": "University of North Carolina at Chapel Hill",
         "nickname": "UNC",
         "email_suffix": "unc.edu",
+        "background_color": "7BAFD4",
+        "text_color": "FFFFFF",
         "admins": [
             "admin@unc.edu"
+            ]
+    },
+    {
+        "seed_id": 3,
+        "name": "North Carolina State University",
+        "nickname": "NC State",
+        "email_suffix": "ncsu.edu",
+        "background_color": "CC0000",
+        "text_color": "FFFFFF",
+        "admins": [
+            "admin@ncsu.edu"
+            ]
+    },
+    {
+        "seed_id": 4,
+        "name": "Wake Forest University",
+        "nickname": "Wake Forest",
+        "email_suffix": "wfu.edu",
+        "background_color": "9E7E38",
+        "text_color": "000000",
+        "admins": [
+            "wfu@ncsu.edu"
             ]
     }
 ]

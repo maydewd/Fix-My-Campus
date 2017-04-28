@@ -1,2 +1,6 @@
-<h1><%= @user.name%>'s posts</h1>
-<%= render partial: 'posts/post', collection: @user.posts, locals: {show_action_button: true} %>
+<h1 class="text-center"><%= @user.name%>'s posts</h1>
+<% if @user.posts.nil? || @user.posts.empty? %>
+    <h5 class="text-center">No posts have been made yet!</h5>
+<% else %>
+    <%= render partial: 'posts/post', collection: @user.posts, locals: {show_action_button: true} %>
+<% end %>

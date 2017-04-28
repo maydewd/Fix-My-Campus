@@ -9,6 +9,8 @@ schools.each do |school|
     s.name = school['name']
     s.nickname = school['nickname']
     s.email_suffix = school['email_suffix']
+    s.background_color = school['background_color']
+    s.text_color = school['text_color']
     s.save
     # Clear existing admins for this school
     s.admins.each do |user|
