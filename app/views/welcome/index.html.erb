@@ -1,8 +1,13 @@
-<h1>Welcome to the (improved) Fix My Campus</h1>
+<div id="outer">
+    <div id="message">
+        <h1>Fix My Campus</h1>
+        <%= link_to 'Select a School', schools_path, class: 'btn-lg btn-primary' %>
+        <br />
+        <%= link_to 'Sign Up', new_user_registration_path, class: 'btn-lg btn-info' %>
+        <%= link_to 'Sign In', new_user_session_path, class: 'btn-lg btn-success' %>
+    </div>
+</div>
 
-<%= link_to 'Select a School', schools_path %>
-<%= link_to 'Sign Up', new_user_registration_path %>
-<%= link_to 'Sign In', new_user_session_path %>
-
-
-<%= video_tag "wallace-wade-timelapse-trimmed.mp4", :size => "320x240", :controls => true %>
+<video id="bg-video" autoplay loop muted preload="auto" >
+    <source src="<%= asset_url("wallace-wade-timelapse-trimmed.mp4") %>" type="video/mp4" />
+</video>
