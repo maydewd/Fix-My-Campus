@@ -3,7 +3,7 @@ class CreateSchools < ActiveRecord::Migration[5.0]
     create_table :schools do |t|
       t.string :name
       t.string :nickname
-      t.string :email_prefix
+      t.string :email_suffix
       t.integer :seed_id
 
       t.timestamps
@@ -12,6 +12,6 @@ class CreateSchools < ActiveRecord::Migration[5.0]
     add_index :schools, :seed_id,       unique: true
     add_index :schools, :name,          unique: true
     add_index :schools, :nickname,      unique: true
-    add_index :schools, :email_prefix,  unique: true
+    add_index :schools, :email_suffix,  unique: true
   end
 end

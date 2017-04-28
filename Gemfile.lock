@@ -59,6 +59,7 @@ GEM
       railties (>= 4.1.0, < 5.1)
       responders
       warden (~> 1.2.3)
+    devise-bootstrap-views (0.0.11)
     erubis (2.7.0)
     execjs (2.7.0)
     ffi (1.9.18)
@@ -193,6 +194,7 @@ DEPENDENCIES
   chartkick
   counter_culture
   devise
+  devise-bootstrap-views
   groupdate
   jbuilder
   jquery-rails

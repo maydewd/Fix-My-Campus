@@ -3,7 +3,7 @@
         "seed_id": 1,
         "name": "Duke University",
         "nickname": "Duke",
-        "email_prefix": "duke.edu",
+        "email_suffix": "duke.edu",
         "admins": [
             "dmm68@duke.edu",
             "rcd@cs.duke.edu"
@@ -13,7 +13,7 @@
         "seed_id": 2,
         "name": "University of North Carolina at Chapel Hill",
         "nickname": "UNC",
-        "email_prefix": "unc.edu",
+        "email_suffix": "unc.edu",
         "admins": [
             "admin@unc.edu"
             ]

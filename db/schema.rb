@@ -53,11 +53,11 @@ ActiveRecord::Schema.define(version: 20170426022059) do
   create_table "schools", force: :cascade do |t|
     t.string   "name"
     t.string   "nickname"
-    t.string   "email_prefix"
+    t.string   "email_suffix"
     t.integer  "seed_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
-    t.index ["email_prefix"], name: "index_schools_on_email_prefix", unique: true
+    t.index ["email_suffix"], name: "index_schools_on_email_suffix", unique: true
     t.index ["name"], name: "index_schools_on_name", unique: true
     t.index ["nickname"], name: "index_schools_on_nickname", unique: true
     t.index ["seed_id"], name: "index_schools_on_seed_id", unique: true

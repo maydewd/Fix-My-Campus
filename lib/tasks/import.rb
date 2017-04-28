@@ -8,7 +8,7 @@ schools.each do |school|
     s = School.find_or_initialize_by(seed_id: school['seed_id'])
     s.name = school['name']
     s.nickname = school['nickname']
-    s.email_prefix = school['email_prefix']
+    s.email_suffix = school['email_suffix']
     s.save
     # Clear existing admins for this school
     s.admins.each do |user|

@@ -9,7 +9,7 @@ class Post < ApplicationRecord
     # Adds a where sql condition so the post message contains the query string (case insensitive)
     def self.search(query)
         if query && !query.empty?
-            where("lower(message) LIKE ?", "%#{query.downcase}%")
+            where("lower(message) LIKE ?", "%#{sanitize_sql_like(query.downcase)}%")
         else
             all
         end
