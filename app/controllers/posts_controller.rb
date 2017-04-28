@@ -23,7 +23,6 @@ class PostsController < ApplicationController
     end
     
     # POST /posts
-    # POST /posts.json
     def create
         @post = Post.new(post_params)
         @post.user = current_user
@@ -32,48 +31,39 @@ class PostsController < ApplicationController
         respond_to do |format|
           if @post.save
             format.html { redirect_to @post, notice: 'Post was successfully created.' }
-            # format.json { render :show, status: :created, location: @movie }
           else
             format.html { render :new }
-            # format.json { render json: @movie.errors, status: :unprocessable_entity }
           end
         end
     end
     
     # PATCH/PUT /posts/1
-    # PATCH/PUT /posts/1.json
     def update
         if current_user == @post.user
             respond_to do |format|
                 if @post.update(post_params)
                     format.html { redirect_to @post, notice: 'Post was successfully updated.' }
-                    # format.json { render :show, status: :ok, location: @movie }
                 else
                     format.html { render :edit }
-                    # format.json { render json: @movie.errors, status: :unprocessable_entity }
                 end
             end
         else
             respond_to do |format|
                 format.html { redirect_to @post, alert: 'Post was not updated. You can only update your own posts.' }
-                # format.json { head :no_content }
             end
         end
     end
     
     # DELETE /posts/1
-    # DELETE /posts/1.json
     def destroy
         if current_user == @post.user
             @post.destroy
             respond_to do |format|
                 format.html { redirect_to current_user.school, notice: 'Post was successfully destroyed.' }
-                # format.json { head :no_content }
             end
         else
             respond_to do |format|
                 format.html { redirect_to @post, alert: 'Post was not destroyed. You can only delete your own posts.' }
-                # format.json { head :no_content }
             end
         end
     end
@@ -96,7 +86,6 @@ class PostsController < ApplicationController
     
     # POST /posts/1/status/completed
     # POST /posts/1/status/asdf (404)
-    # POST /posts/1/status/completed.json
     def status
         if current_user.admin?
             respond_to do |format|
@@ -104,20 +93,19 @@ class PostsController < ApplicationController
                 if status_name
                     @post.update(status: status_name)
                     format.html { redirect_to @post, notice: "Status successfully changed to #{params[:status_name].humanize}" }
-                    # format.json { render :show, status: :ok, location: @movie }
                 else
                     format.html { redirect_to @post, alert: "Post was not updated. Invalid status name #{params[:status_name]}" }
-                    # format.json { render json: @movie.errors, status: :unprocessable_entity }
                 end
             end
         else
             respond_to do |format|
                 format.html { redirect_to @post, alert: 'Post status was not updated. You must be an admin to update post status.' }
-                # format.json { head :no_content }
             end
         end
     end
     
+    # GET /users/1/posts
+    # GET /users/1/posts.json
     def user
         @user = User.find_by(id: params[:user_id]) || render_404
     end
