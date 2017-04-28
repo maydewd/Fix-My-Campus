@@ -11,4 +11,4 @@ Rails.application.config.assets.paths << "#{Rails.root}/app/assets/videos"
 
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
-Rails.application.config.assets.precompile += %w( '.woff', '.woff2' '.eot', '.svg', '.ttf' )
+Rails.application.config.assets.precompile += %w( '.woff', '.woff2', '.eot', '.svg', '.ttf' )
