@@ -1,5 +1,5 @@
 <% comment = Comment.new %>
-<div class="panel panel-info" id="js-add-comment">
+<div class="panel <%= 'panel-info' if user_signed_in? && current_user.admin?  %>" id="js-add-comment">
     <div class="panel-body">
         <div class="post-header">
             <h5>New Comment</h5>
