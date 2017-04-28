@@ -13,7 +13,7 @@
 <h3 class="text-center">Post Status Over Time</h3>
 <% totals = Hash.new(0) %>
 <%= line_chart @school.posts
-                .group(:status).order("status, created_at")
+                .group("status").order("status")
                 .group_by_week(:created_at).count
                 .each_with_object({}) {|(k, v), h| h[[k[0].humanize,k[1]]] = totals[k[0]] += v } , colors: ['#2196F3', '#ff9800', '#4CAF50', '#e51c23']%>
 
