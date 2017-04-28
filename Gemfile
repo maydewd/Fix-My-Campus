@@ -15,6 +15,10 @@ gem 'will_paginate'
 gem 'will_paginate-bootstrap'
 gem 'counter_culture'
 gem 'jquery-turbolinks'
+# Statistics charting library
+gem "chartkick"
+# Add-on for time-based charting
+gem 'groupdate'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

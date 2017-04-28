@@ -1,0 +1,40 @@
+<div class="of-auto">
+    <%= link_to '<span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span> Back'.html_safe, school_path(@school), class: 'btn btn-primary back-btn pull-left new-post' %>
+    <h1 class="text-center" id="school-name"><%= @school.name %> Stats</h1>
+</div>
+<h5 class="text-center">Total Posts: <%= @school.posts.count %></h5>
+
+<% if @school.posts.empty? %>
+<p class="text-center">Stats will appear here once the first post is made!</p>
+<% else %>
+<h3 class="text-center">Post Status Breakdown</h3>
+<%= pie_chart @school.posts.group(:status).order(:status).count.transform_keys {|k| k.humanize }, colors: ['#2196F3', '#ff9800', '#4CAF50', '#e51c23'] %>
+
+<h3 class="text-center">Post Status Over Time</h3>
+<% totals = Hash.new(0) %>
+<%= line_chart @school.posts
+                .group(:status).order("status, created_at")
+                .group_by_week(:created_at).count
+                .each_with_object({}) {|(k, v), h| h[[k[0].humanize,k[1]]] = totals[k[0]] += v } , colors: ['#2196F3', '#ff9800', '#4CAF50', '#e51c23']%>
+
+<table class="stats-row">
+    <tbody class="stats-row">
+      <tr class="stats-row">
+        <td class="stats-col"><h3 class="text-right">Most liked post:</h3></td>
+        <td><h3><%= link_to "#{@most_liked_post ? @most_liked_post.likes_count + @most_liked_post.legacy_numlikes : 0}<span class='glyphicon glyphicon-heart' aria-hidden='true'></span>".html_safe, @most_liked_post ? post_path(@most_liked_post) : '#', class: 'text-info spacer' %></h3></td>
+      </tr>
+      <tr class="stats-row">
+        <td class="stats-col"><h3 class="text-right">Most commented post:</h3></td>
+        <td><h3><%= link_to "#{@most_commented_post ? @most_commented_post.comments_count : 0}<span class='glyphicon glyphicon-comment' aria-hidden='true'></span>".html_safe, @most_commented_post ? post_path(@most_commented_post) : '#', class: 'spacer' %></h3></td>
+      </tr>
+      <tr class="stats-row">
+        <td class="stats-col"><h3 class="text-right">Average likes per post:</h3></td>
+        <td><h3 class="spacer"><%= @average_post_likes.round(1) %> likes<span class='glyphicon glyphicon-heart text-info' aria-hidden='true'></span>/post</h3></td>
+      </tr>
+      <tr class="stats-row">
+        <td class="stats-col"><h3 class="text-right">Average comments per post:</h3></td>
+        <td><h3 class="spacer"><%= @average_post_comments.round(1) %> comments<span class='glyphicon glyphicon-comment text-primary' aria-hidden='true'></span>/post</h3></td>
+      </tr>
+    </tbody>
+</table>
+<% end %>

@@ -9,23 +9,23 @@
             </div>
         </div>
         <div id="posts">
-            <%= render partial: 'posts/post', collection: @posts %>
+            <%= render partial: 'posts/post', collection: @posts, locals: {show_action_button: true} %>
         </div>
     </div>
     
     <div class="col-lg-3">
         <div class="well sidebar-nav">
-            <%= link_to '<span class="glyphicon glyphicon-stats" aria-hidden="true"></span>  School Stats'.html_safe, '#', :class => "lead" %>
+            <%= link_to '<span class="glyphicon glyphicon-stats" aria-hidden="true"></span>  School Stats'.html_safe, stats_school_path(@school), :class => "lead" %>
             <hr />
             <h6>Sort Posts</h6>
             <ul class="nav nav-list">
-                <li><%= link_to "<span class='glyphicon glyphicon-flash #{'text-info' if params[:sort] == 'newest'}' aria-hidden='true'></span> Newest".html_safe, school_path(@school, sort: 'newest') %></li>
+                <li><%= link_to "<span class='glyphicon glyphicon-flash #{'text-info' if params[:sort].blank? || params[:sort] == 'newest'}' aria-hidden='true'></span> Newest".html_safe, school_path(@school, sort: 'newest') %></li>
                 <li><%= link_to "<span class='glyphicon glyphicon-fire #{'text-info' if params[:sort] == 'trending'}'' aria-hidden='true'></span> Trending".html_safe, school_path(@school, sort: 'trending') %></li>
                 <li><%= link_to "<span class='glyphicon glyphicon-heart #{'text-info' if params[:sort] == 'top'}' aria-hidden='true'></span> Top".html_safe, school_path(@school, sort: 'top') %></li>
             </ul>
             <hr />
             <h6>Filter Posts</h6>
-            <form class="" role="search">
+            <form role="search">
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="Search" name="query" id="query" value="<%= params[:query] %>">
                     <div class="input-group-btn">
@@ -33,6 +33,7 @@
                     </div>
                 </div>
                 <div class="input-group">
+                    <%= hidden_field_tag 'sort', params[:sort] %>
                     <%= hidden_field_tag 'statuses[]' %>
                     <% Post.statuses.each do |status, value| %>
                         <label class="checkbox spacer text-<%= status_to_suffix(status) %>" onclick="this.form.submit()">

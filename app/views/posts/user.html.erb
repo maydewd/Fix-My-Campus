@@ -1,0 +1,2 @@
+<h1><%= @user.name%>'s posts</h1>
+<%= render partial: 'posts/post', collection: @user.posts, locals: {show_action_button: true} %>

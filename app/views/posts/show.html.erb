@@ -1,9 +1,9 @@
 <div class="row">
     <div class="col-lg-9">
         <%= link_to '<span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span> Back'.html_safe, school_path(@post.school), class: 'btn btn-primary back-btn' %>
-        <%= render @post %>
+        <%= render @post, show_action_button: false %>
         <hr />
-        <h4>Comments</h4>
+        <h4><%= pluralize(@post.comments_count, 'Comment') %></h4>
         <% can_add = user_signed_in? && @post.school = current_user.school %>
         <% if @post.comments.empty? %>
             <p>
@@ -26,11 +26,9 @@
                                 Change Status <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something else here</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">Separated link</a></li>
+                                <% Post.statuses.each_key do |status| %>
+                                    <li class="<%= 'disabled' if @post.status == status %>" ><%= link_to status.humanize, set_status_post_path(@post, status), method: :post, class: "#{'ovr-text-'+status_to_suffix(status) if @post.status != status}" %></li>
+                                <% end %>
                             </ul>
                         </li>
                     </ul>

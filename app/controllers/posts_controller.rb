@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
-    before_action :authenticate_user!, only: [:new, :edit, :create, :update, :destroy, :like, :unlike]
-    before_action :set_post, only: [:show, :edit, :update, :destroy, :like, :unlike]
+    before_action :authenticate_user!, only: [:new, :edit, :create, :update, :destroy, :like, :unlike, :status]
+    before_action :set_post, only: [:show, :edit, :update, :destroy, :like, :unlike, :status]
     
     # GET /posts/1
     # GET /posts/1.json
@@ -17,7 +17,7 @@ class PostsController < ApplicationController
     def edit
         unless current_user == @post.user
             respond_to do |format|
-                format.html { redirect_to @post, notice: 'You can only edit your own posts' }
+                format.html { redirect_to @post, alert: 'You can only edit your own posts' }
             end
         end
     end
@@ -55,11 +55,10 @@ class PostsController < ApplicationController
             end
         else
             respond_to do |format|
-                format.html { redirect_to @post, notice: 'Post was not updated. You can only update your own posts.' }
+                format.html { redirect_to @post, alert: 'Post was not updated. You can only update your own posts.' }
                 # format.json { head :no_content }
             end
         end
-
     end
     
     # DELETE /posts/1
@@ -73,7 +72,7 @@ class PostsController < ApplicationController
             end
         else
             respond_to do |format|
-                format.html { redirect_to @post, notice: 'Post was not destroyed. You can only delete your own posts.' }
+                format.html { redirect_to @post, alert: 'Post was not destroyed. You can only delete your own posts.' }
                 # format.json { head :no_content }
             end
         end
@@ -95,10 +94,38 @@ class PostsController < ApplicationController
         like.destroy if like
     end
     
+    # POST /posts/1/status/completed
+    # POST /posts/1/status/asdf (404)
+    # POST /posts/1/status/completed.json
+    def status
+        if current_user.admin?
+            respond_to do |format|
+                status_name = Post.statuses[params[:status_name]]
+                if status_name
+                    @post.update(status: status_name)
+                    format.html { redirect_to @post, notice: "Status successfully changed to #{params[:status_name].humanize}" }
+                    # format.json { render :show, status: :ok, location: @movie }
+                else
+                    format.html { redirect_to @post, alert: "Post was not updated. Invalid status name #{params[:status_name]}" }
+                    # format.json { render json: @movie.errors, status: :unprocessable_entity }
+                end
+            end
+        else
+            respond_to do |format|
+                format.html { redirect_to @post, alert: 'Post status was not updated. You must be an admin to update post status.' }
+                # format.json { head :no_content }
+            end
+        end
+    end
+    
+    def user
+        @user = User.find_by(id: params[:user_id]) || render_404
+    end
+    
     private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
-      @post = Post.find(params[:id]) || render_404
+      @post = Post.find_by(id: params[:id]) || render_404
     end
     
     # Never trust parameters from the scary internet, only allow the white list through.

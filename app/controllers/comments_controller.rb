@@ -32,7 +32,7 @@ class CommentsController < ApplicationController
             end
         else
             respond_to do |format|
-                format.html { redirect_to @comment.post, notice: 'Comment was not destroyed. You can only delete your own comments.' }
+                format.html { redirect_to @comment.post, alert: 'Comment was not destroyed. You can only delete your own comments.' }
                 # format.json { head :no_content }
             end
         end
@@ -41,11 +41,11 @@ class CommentsController < ApplicationController
     private
     # Use callbacks to share common setup or constraints between actions.
     def set_comment
-      @comment = Comment.find(params[:id]) || render_404
+      @comment = Comment.find_by(id: params[:id]) || render_404
     end
     
     def set_post
-      @post = Post.find(params[:post_id]) || render_404
+      @post = Post.find_by(id: params[:post_id]) || render_404
     end
     
     # Never trust parameters from the scary internet, only allow the white list through.

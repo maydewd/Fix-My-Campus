@@ -1,4 +1,4 @@
-<div class="panel panel-info">
+<div class="panel <%= 'panel-info' if comment.user.admin?  %>">
     <div class="panel-body">
         <div class="post-header">
             <h6 class="text-muted post-user-info"><%= link_to comment.user.name, '#' %> - <%= comment.created_at.in_time_zone("Eastern Time (US & Canada)").strftime('%d %b %Y %l:%M %p') %></h6>
