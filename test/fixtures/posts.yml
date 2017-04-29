@@ -1,7 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  message: MyText
+# This model initially had no columns defined. If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+legacy: 
+    message: asdf
+    school: duke
+    legacy: true
+    legacy_user_name: "fb name"
+    legacy_numlikes: 99
 
-two:
-  message: MyText
+normal1: 
+    message: test post
+    user: normal1
+    school: duke

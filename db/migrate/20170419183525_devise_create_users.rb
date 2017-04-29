@@ -33,6 +33,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
       ## Custom
       t.string  :name,  null: false, default: ""
       t.boolean :admin, null: false, default: false
+      t.references :school, foreign_key: true, null: false
 
 
       t.timestamps null: false

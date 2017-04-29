@@ -1,4 +1,7 @@
 class Post < ApplicationRecord
+    validates :message, presence: true, length: { maximum: 10000 }
+    validates_presence_of :user, :unless => :legacy?
+    
     belongs_to :school
     belongs_to :user, optional: true
     has_many :likes

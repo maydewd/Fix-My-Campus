@@ -20,6 +20,8 @@ gem "chartkick"
 # Add-on for time-based charting
 gem 'groupdate'
 gem 'devise-bootstrap-views'
+# Use for seeding data
+gem 'faker'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

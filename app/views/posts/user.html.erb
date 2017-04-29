@@ -2,5 +2,5 @@
 <% if @user.posts.nil? || @user.posts.empty? %>
     <h5 class="text-center">No posts have been made yet!</h5>
 <% else %>
-    <%= render partial: 'posts/post', collection: @user.posts, locals: {show_action_button: true} %>
+    <%= render partial: 'posts/post', collection: @user.posts.order(:created_at), locals: {show_action_button: true} %>
 <% end %>

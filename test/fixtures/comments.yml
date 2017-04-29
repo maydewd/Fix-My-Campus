@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  message: MyText
-  user: one
-  post: one
+  message: comment msg from rcd
+  user: admin
+  post: legacy
 
 two:
-  message: MyText
-  user: two
-  post: two
+  message: comment msg from david
+  user: normal1
+  post: normal1

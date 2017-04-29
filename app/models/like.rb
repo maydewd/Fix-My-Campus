@@ -1,6 +1,7 @@
 class Like < ApplicationRecord
     belongs_to :user
     belongs_to :post
+    validates_uniqueness_of :user, :scope => :post
     
     counter_culture :post
     counter_culture :post, 

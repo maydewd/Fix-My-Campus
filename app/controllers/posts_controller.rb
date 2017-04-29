@@ -88,8 +88,8 @@ class PostsController < ApplicationController
     # POST /posts/1/status/asdf (404)
     def status
         if current_user.admin?
+            status_name = Post.statuses[params[:status_name]]
             respond_to do |format|
-                status_name = Post.statuses[params[:status_name]]
                 if status_name
                     @post.update(status: status_name)
                     format.html { redirect_to @post, notice: "Status successfully changed to #{params[:status_name].humanize}" }

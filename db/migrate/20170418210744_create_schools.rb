@@ -1,10 +1,10 @@
 class CreateSchools < ActiveRecord::Migration[5.0]
   def change
     create_table :schools do |t|
-      t.string :name
-      t.string :nickname
-      t.string :email_suffix
-      t.string :background_color
+      t.string :name, null: false
+      t.string :nickname, null: false
+      t.string :email_suffix, null: false
+      t.string :background_color 
       t.string :text_color
       t.integer :seed_id
 

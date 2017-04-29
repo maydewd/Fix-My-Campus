@@ -1,7 +1,7 @@
 class CreatePosts < ActiveRecord::Migration[5.0]
   def change
     create_table :posts do |t|
-      t.text :message
+      t.text :message, null: false
       
       t.references :user, index: true, foreign_key: true, optional: true
       t.references :school, index: true, foreign_key: true, null: false

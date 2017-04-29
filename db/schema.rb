@@ -13,9 +13,9 @@
 ActiveRecord::Schema.define(version: 20170426022059) do
 
   create_table "comments", force: :cascade do |t|
-    t.text     "message"
-    t.integer  "user_id"
-    t.integer  "post_id"
+    t.text     "message",    null: false
+    t.integer  "user_id",    null: false
+    t.integer  "post_id",    null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_comments_on_post_id"
@@ -23,8 +23,8 @@ ActiveRecord::Schema.define(version: 20170426022059) do
   end
 
   create_table "likes", force: :cascade do |t|
-    t.integer  "post_id"
-    t.integer  "user_id"
+    t.integer  "post_id",    null: false
+    t.integer  "user_id",    null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_likes_on_post_id"
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20170426022059) do
   end
 
   create_table "posts", force: :cascade do |t|
-    t.text     "message"
+    t.text     "message",                            null: false
     t.integer  "user_id"
     t.integer  "school_id",                          null: false
     t.boolean  "legacy",             default: false, null: false
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 20170426022059) do
     t.integer  "legacy_numlikes",    default: 0,     null: false
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
-    t.integer  "status",             default: 0
+    t.integer  "status",             default: 0,     null: false
     t.integer  "likes_count",        default: 0,     null: false
     t.integer  "recent_likes_count", default: 0,     null: false
     t.integer  "comments_count",     default: 0,     null: false
@@ -51,9 +51,9 @@ ActiveRecord::Schema.define(version: 20170426022059) do
   end
 
   create_table "schools", force: :cascade do |t|
-    t.string   "name"
-    t.string   "nickname"
-    t.string   "email_suffix"
+    t.string   "name",             null: false
+    t.string   "nickname",         null: false
+    t.string   "email_suffix",     null: false
     t.string   "background_color"
     t.string   "text_color"
     t.integer  "seed_id"
@@ -76,9 +76,9 @@ ActiveRecord::Schema.define(version: 20170426022059) do
     t.string   "last_sign_in_ip"
     t.string   "name",                default: "",    null: false
     t.boolean  "admin",               default: false, null: false
+    t.integer  "school_id",                           null: false
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.integer  "school_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["school_id"], name: "index_users_on_school_id"
   end

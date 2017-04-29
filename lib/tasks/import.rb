@@ -11,11 +11,15 @@ schools.each do |school|
     s.email_suffix = school['email_suffix']
     s.background_color = school['background_color']
     s.text_color = school['text_color']
-    s.save
+    unless s.save
+        abort("Failed to save school #{s.inspect}")
+    end
     # Clear existing admins for this school
     s.admins.each do |user|
         user.admin = false
-        user.save
+        unless user.save
+            abort("Failed to clear admin user #{user.inspect}")
+        end
     end
     # Create or update each admin for this school
     school['admins'].each do |email|
@@ -25,7 +29,9 @@ schools.each do |school|
         end
         u.school = s
         u.admin = true
-        u.save
+        unless u.save
+            abort("Failed to save admin user #{u.inspect}")
+        end
     end
 end
 
@@ -41,14 +47,18 @@ posts.each do |school_seed_id, school_posts|
     school = School.find_by!(seed_id: school_seed_id)
     # Create or update each post
     school_posts.each do |fbid, data|
-        p = Post.find_or_initialize_by(legacy_fbid: fbid)
-        p.message = data['message']
-        p.legacy_user_name = data['from_name']
-        p.legacy_numlikes = data['numlikes']
-        p.created_at = data['created_time']
-        p.school = school
-        p.legacy = true
-        p.save
+        unless data['message'].nil?
+            p = Post.find_or_initialize_by(legacy_fbid: fbid)
+            p.message = data['message']
+            p.legacy_user_name = data['from_name']
+            p.legacy_numlikes = data['numlikes']
+            p.created_at = data['created_time']
+            p.school = school
+            p.legacy = true
+            unless p.save
+                abort("Failed to save post #{p.inspect}")
+            end
+        end
     end
 end
 
