@@ -24,7 +24,7 @@ class Post < ApplicationRecord
         if statuses.nil?
             where(status: self.DEFAULT_STATUSES)
         else
-            where(status: statuses)
+            where(status: statuses.reject!(&:empty?))
         end
     end
     
