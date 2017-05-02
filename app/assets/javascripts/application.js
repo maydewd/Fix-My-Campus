@@ -24,7 +24,7 @@
 // Adds click events to all buttons associated with liking a post. Defined here since it affects multiple pages.
 var like_posts = function() {
     // Adds AJAX request for liking a post
-    $('.post-like').click(function(event) {
+    $('.post-like:not(.disabled)').click(function(event) {
         event.preventDefault();
         var el = $(this);
         var post_id = el.data('post-id');
