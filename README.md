@@ -1,5 +1,7 @@
 # Final Project: Fix My Campus
 
+<img src='demo.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
 ### David Maydew
 
 ## Use of Application
